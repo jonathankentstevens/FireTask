@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Pacifico" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Todo App</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>
+
+    <!-- Assets -->
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/spinner.min.js" charset="utf-8"></script>
+
+</head>
+
+<body>
+<app-root>Loading...</app-root>
+
+</body>
+
+<div class="alertBox" id="alertBox">
+    <div class="alertBoxHeader">
+        <span class="close" (click)="Alert.close()">×</span>
+        <h2 id="alertHeaderMsg"></h2>
+    </div>
+    <div class="alertBoxContent">
+        <p id="alertBodyMsg"></p>
+    </div>
+    <div class="alertBoxButton">
+        <button class="mainButtonRed" (click)="Alert.close()">OK</button>
+    </div>
+</div>
+
+</html>

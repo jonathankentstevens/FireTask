@@ -1,0 +1,11 @@
+<md-toolbar color="primary" class="navbar">
+    <span (click)="navigate('')" id="toolbarTitle">{{title}}</span>
+  <span class="welcomeBanner">
+    {{welcomeMsg}}
+  </span>
+    <button md-button *ngIf="!loggedIn" (click)="navigate('register')">Register</button>
+    <button md-button *ngIf="!loggedIn" (click)="navigate('login')">Login</button>
+    <button md-button *ngIf="loggedIn" (click)="logout()">Logout</button>
+</md-toolbar>
+
+<router-outlet></router-outlet>

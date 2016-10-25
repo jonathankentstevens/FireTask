@@ -1,0 +1,20 @@
+<div class="dialogContainer">
+    <md-card class="dialogCard">
+        <md-card-title>Sign Up</md-card-title>
+        <md-card-content class="dialogForm" id="registerForm">
+            <md-input placeholder="Name" name="userName" [(ngModel)]="user.name"></md-input>
+            <md-input placeholder="Email" [(ngModel)]="user.email"></md-input>
+            <md-input placeholder="Password" type="password" [(ngModel)]="user.password"></md-input>
+            <md-input placeholder="Verify Password" type="password" name="passwordVerify"
+                      [(ngModel)]="passwordVerify"></md-input>
+        </md-card-content>
+        <md-card-actions>
+            <button md-raised-button color="primary" (click)="submitRegister()">
+                Register
+            </button>
+        </md-card-actions>
+        <div class="dialogError">
+            {{registerError}}
+        </div>
+    </md-card>
+</div>
