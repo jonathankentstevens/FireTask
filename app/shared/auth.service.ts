@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core";
-import {AngularFire} from 'angularfire2';
+import {Router} from "@angular/router";
+import {AngularFire, FirebaseAuthState} from 'angularfire2';
 import {User} from "./user.model";
 
 @Injectable()
 export class AuthService {
 
-    constructor(private af:AngularFire) {
+    constructor(private af:AngularFire, private router:Router) {
     }
 
     createNewUser(user:User) {
@@ -15,11 +16,16 @@ export class AuthService {
         })
     }
 
+    getCurrent() {
+        return this.af.auth
+    }
+
     login(email:string, pass:string) {
         return this.af.auth.login({email: email, password: pass});
     }
 
     logout() {
-        return this.af.auth.logout();
+        this.af.auth.logout();
+        this.router.navigate([""]);
     }
 }

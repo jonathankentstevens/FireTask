@@ -9,6 +9,7 @@ import {AppComponent} from "./app.component";
 import {HomeComponent} from "./home/home.component";
 import {RegisterComponent} from "./register/register.component";
 import {LoginComponent} from "./login/login.component";
+import {TodoComponent} from "./todo/todo.component";
 
 export const firebaseConfig = {
     apiKey: "AIzaSyDO4cLoAfFo37TraE-TAzhnpdbEzp0xn98",
@@ -23,13 +24,13 @@ export const firebaseAuthConfig = {
     method: AuthMethods.Password
 };
 
-
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
         RegisterComponent,
         LoginComponent,
+        TodoComponent,
     ],
     imports: [
         BrowserModule,

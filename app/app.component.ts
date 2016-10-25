@@ -1,32 +1,34 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
-import {AngularFire} from 'angularfire2';
+import {AuthService} from './shared/auth.service';
+import {FirebaseAuthState} from 'angularfire2';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
+    providers: [AuthService]
 })
 
 export class AppComponent implements OnInit {
     title:string = "Todo App";
     loggedIn:boolean = false;
     welcomeMsg:string = "";
+    userAuth:FirebaseAuthState;
 
-    constructor(private router:Router, private af:AngularFire) {
-
+    constructor(private router:Router, private authService:AuthService) {
     }
 
     ngOnInit() {
-        this.af.auth.subscribe(auth => {
+        this.authService.getCurrent().subscribe(auth => {
             if (auth) {
                 this.welcomeMsg = "Welcome, " + auth.auth.email;
                 this.loggedIn = true;
             } else {
                 this.welcomeMsg = "";
                 this.loggedIn = false;
-            }
-        });
+            }  
+        })
     }
 
     navigate(route:string) {
@@ -34,7 +36,6 @@ export class AppComponent implements OnInit {
     }
 
     logout() {
-        this.af.auth.logout();
-        this.navigate("");
+        this.authService.logout();
     }
 }
