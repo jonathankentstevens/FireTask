@@ -10,7 +10,7 @@ export class TodoService {
     }
 
     getList(uid:string) {
-        this.todos = this.af.database.list(uid + "/todos")
+        this.todos = this.af.database.list(`/users/${uid}/todos`)
         return this.todos;
     }
 

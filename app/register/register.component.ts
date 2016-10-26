@@ -24,9 +24,15 @@ export class RegisterComponent implements OnInit {
 
     submitRegister() {
         if (this.user.password === this.passwordVerify) {
-            this.authService.createNewUser(this.user).then((success) => {
+            this.authService.createNewUser(this.user).then((user) => {
                 this.registerError = "";
                 this.router.navigate([""]);
+                this.user.uid = user.uid;
+                this.authService.addUserToDatabase(this.user).then((success) => {
+                    console.log("Success")
+                }).catch((err) => {
+                    console.log(err);
+                })
             }).catch((err) => {
                 this.registerError = "*** " + err.message;
             });
