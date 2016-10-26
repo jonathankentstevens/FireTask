@@ -308,7 +308,7 @@ button {
 
 .todoContainer {
     background: #fff;
-    margin: 10% auto;
+    margin: auto;
     position: relative;
     width: 50%;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
@@ -333,7 +333,7 @@ button {
     color: #e6e6e6;
 }
 
-.todoContainer h1 {
+.todoHeader1 {
     font-size: 100px;
     font-weight: 100;
     text-align: center;

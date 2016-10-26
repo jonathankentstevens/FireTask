@@ -1,14 +1,28 @@
 import {Injectable} from '@angular/core';
-import {AngularFire} from 'angularfire2';
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import {Todo} from './todo'
 
 @Injectable()
 export class TodoService {
-    
+    todos:FirebaseListObservable<Todo[]>;
+
     constructor(private af:AngularFire) {
     }
-    
+
     getList(uid:string) {
-        return this.af.database.list(uid + "/todos")
+        this.todos = this.af.database.list(uid + "/todos")
+        return this.todos;
+    }
+
+    updateTodo(todo:Todo, values:Object = {}) {
+        this.todos.update(todo, values);
+    }
+
+    toggleTodoComplete(todo:Todo) {
+        let updatedTodo = this.updateTodo(todo, {
+            completed: !todo.completed
+        });
+        return updatedTodo;
     }
 
     // Simulate POST /todos

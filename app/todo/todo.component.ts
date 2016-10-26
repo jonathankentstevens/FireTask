@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TodoService} from '../shared/todo.service';
 import {AuthService} from '../shared/auth.service';
-import {FirebaseListObservable} from 'angularfire2';
+import {Todo} from '../shared/todo'
 
 @Component({
     selector: 'todo-list',
@@ -11,7 +11,7 @@ import {FirebaseListObservable} from 'angularfire2';
 })
 
 export class TodoComponent implements OnInit {
-    todos:Array<any> = [];
+    todos:Todo[] = [];
 
     constructor(private todoService:TodoService, private authService:AuthService) {
     }
@@ -21,9 +21,9 @@ export class TodoComponent implements OnInit {
     //     this.newTodo = new Todo();
     // }
 
-    // toggleTodoComplete(todo) {
-    //     this.todoService.toggleTodoComplete(todo);
-    // }
+    toggleTodoComplete(todo) {
+        this.todoService.toggleTodoComplete(todo);
+    }
 
     // removeTodo(todo) {
     //     this.todoService.deleteTodoById(todo.id);
@@ -37,6 +37,7 @@ export class TodoComponent implements OnInit {
         this.authService.getCurrent().subscribe(auth => {
            if (auth) {
                this.todoService.getList(auth.uid).subscribe(todos => {
+                   console.log(todos);
                    this.todos = todos;
                });
            }
