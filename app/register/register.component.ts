@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
                 this.authService.addUserToDatabase(this.user).then((success) => {
                     console.log("Success")
                 }).catch((err) => {
-                    console.log(err);
+                    console.log("Error adding user to database:", err);
                 })
             }).catch((err) => {
                 this.registerError = "*** " + err.message;

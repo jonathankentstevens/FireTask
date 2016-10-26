@@ -17,7 +17,6 @@ export class AuthService {
     }
 
     addUserToDatabase(user:User) {
-        console.log(user);
         return this.af.database.object(`/users/${user.uid}`).set({
             name: user.name,
             email: user.email
