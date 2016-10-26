@@ -9,7 +9,7 @@ import {Todo} from '../shared/todo'
     styleUrls: ['todo.component.css'],
     providers: [TodoService, AuthService]
 })
-
+ 
 export class TodoComponent implements OnInit {
     todos:Todo[] = [];
     newTodo:Todo = new Todo();
