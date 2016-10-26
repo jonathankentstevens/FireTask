@@ -1,12 +1,10 @@
 import {Injectable} from "@angular/core";
 import {Router} from "@angular/router";
-import {AngularFire, FirebaseAuthState} from 'angularfire2';
+import {AngularFire} from 'angularfire2';
 import {User} from "./user.model";
 
 @Injectable()
 export class AuthService {
-
-    userAuth:FirebaseAuthState;
 
     constructor(private af:AngularFire, private router:Router) {
     }
@@ -18,20 +16,8 @@ export class AuthService {
         })
     }
 
-    getCurrent():FirebaseAuthState {
-        this.af.auth.subscribe(
-            function (auth) {
-                this.userAuth = auth;
-                return auth;
-            },
-            function (error) {
-                console.log("Error happened" + error);
-            },
-            function () {
-                return this.userAuth;
-            }
-        );
-        return this.userAuth;
+    getCurrent() {
+        return this.af.auth
     }
 
     login(email:string, pass:string) {

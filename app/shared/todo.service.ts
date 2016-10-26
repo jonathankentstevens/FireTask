@@ -1,17 +1,14 @@
 import {Injectable} from '@angular/core';
-import {AngularFire, FirebaseListObservable} from 'angularfire2';
-import {AuthService} from './auth.service';
+import {AngularFire} from 'angularfire2';
 
 @Injectable()
 export class TodoService {
     
-    constructor(private af:AngularFire, private authService:AuthService) {
+    constructor(private af:AngularFire) {
     }
     
-    getTodos(uid:string) {
-        this.af.database.list(uid + "/todos").subscribe(obs => {
-            console.log(obs);
-        });
+    getList(uid:string) {
+        return this.af.database.list(uid + "/todos")
     }
 
     // Simulate POST /todos

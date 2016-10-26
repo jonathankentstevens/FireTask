@@ -20,17 +20,15 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.userAuth = this.authService.getCurrent();
-        console.log(this.userAuth);
-        // this.authService.getCurrent().subscribe(auth => {
-            // if (auth) {
-            //     this.welcomeMsg = "Welcome, " + auth.auth.email;
-            //     this.loggedIn = true;
-            // } else {
-            //     this.welcomeMsg = "";
-            //     this.loggedIn = false;
-            // }
-        // })
+        this.authService.getCurrent().subscribe(auth => {
+            if (auth) {
+                this.welcomeMsg = "Welcome, " + auth.auth.email;
+                this.loggedIn = true;
+            } else {
+                this.welcomeMsg = "";
+                this.loggedIn = false;
+            }
+        })
     }
 
     navigate(route:string) {
