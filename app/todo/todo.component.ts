@@ -34,7 +34,6 @@ export class TodoComponent implements OnInit {
         this.authService.getCurrent().subscribe(auth => {
            if (auth) {
                this.todoService.getList(auth.uid).subscribe(todos => {
-                   console.log(todos);
                    this.todos = todos;
                });
            }
