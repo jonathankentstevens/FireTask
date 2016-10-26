@@ -1,7 +1,6 @@
 export class Todo {
   $key;
   $exists;
-  id: number;
   title: string = '';
   completed: boolean = false;
   important: boolean = false;

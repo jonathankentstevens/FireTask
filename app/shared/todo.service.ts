@@ -14,6 +14,10 @@ export class TodoService {
         return this.todos;
     }
 
+    addTodo(todo:Todo) {
+        this.todos.push(todo);
+    }
+
     updateTodo(todo:Todo, values:Object = {}) {
         this.todos.update(todo, values);
     }
@@ -23,6 +27,10 @@ export class TodoService {
             completed: !todo.completed
         });
         return updatedTodo;
+    }
+
+    removeTodo(todo:Todo) {
+        this.todos.remove(todo);
     }
 
     // Simulate POST /todos

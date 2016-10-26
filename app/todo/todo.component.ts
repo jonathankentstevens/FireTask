@@ -12,26 +12,23 @@ import {Todo} from '../shared/todo'
 
 export class TodoComponent implements OnInit {
     todos:Todo[] = [];
+    newTodo:Todo = new Todo();
 
     constructor(private todoService:TodoService, private authService:AuthService) {
     }
 
-    // addTodo() {
-    //     this.todoService.addTodo(this.newTodo);
-    //     this.newTodo = new Todo();
-    // }
+    addTodo() {
+        this.todoService.addTodo(this.newTodo);
+        this.newTodo = new Todo();
+    }
 
     toggleTodoComplete(todo) {
         this.todoService.toggleTodoComplete(todo);
     }
 
-    // removeTodo(todo) {
-    //     this.todoService.deleteTodoById(todo.id);
-    // }
-
-    // get todos() {
-    //     return this.todoService.getAllTodos();
-    // }
+    removeTodo(todo) {
+        this.todoService.removeTodo(todo);
+    }
 
     ngOnInit() {
         this.authService.getCurrent().subscribe(auth => {
