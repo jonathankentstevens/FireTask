@@ -17,7 +17,7 @@ export class TodoService {
     addTodo(todo:Todo) {
         this.todos.push(todo);
     }
-
+    
     updateTodo(todo:Todo, values:Object = {}) {
         this.todos.update(todo, values);
     }

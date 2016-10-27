@@ -129,7 +129,7 @@ html, body {
 
 .dialogContainer {
     background: #1ABC9C;
-    height: 93%;
+    height: 77%;
     padding: 5%;
 }
 
@@ -145,6 +145,10 @@ html, body {
     flex-direction: column;
     width: 50%;
     margin: auto;
+}
+
+.dialogActions {
+    padding: 5%;
 }
 
 .dialogError {

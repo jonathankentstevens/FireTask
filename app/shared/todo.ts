@@ -1,11 +1,13 @@
 export class Todo {
-  $key;
-  $exists;
-  title: string = '';
-  completed: boolean = false;
-  important: boolean = false;
+    $key;
+    $exists;
+    title:string = '';
+    description:string = '';
+    showDescription:boolean = false;
+    completed:boolean = false;
+    important:boolean = false;
 
-  constructor(values: Object = {}) {
-    Object.assign(this, values);
-  }
+    constructor(values:Object = {}) {
+        Object.assign(this, values);
+    }
 }

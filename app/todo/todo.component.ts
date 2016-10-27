@@ -13,6 +13,7 @@ import {Todo} from '../shared/todo'
 export class TodoComponent implements OnInit {
     todos:Todo[] = [];
     newTodo:Todo = new Todo();
+    updatedTitle:string;
 
     constructor(private todoService:TodoService, private authService:AuthService) {
     }
@@ -22,12 +23,28 @@ export class TodoComponent implements OnInit {
         this.newTodo = new Todo();
     }
 
-    toggleTodoComplete(todo) {
+    toggleTodoComplete(todo:Todo) {
         this.todoService.toggleTodoComplete(todo);
     }
 
-    removeTodo(todo) {
+    removeTodo(todo:Todo) {
         this.todoService.removeTodo(todo);
+    }
+    
+    updateTitle(todo:Todo, $event) {
+        this.todoService.updateTodo(todo, {
+            title: $event.target.value
+        });
+    }
+
+    updateDescription(todo:Todo, $event) {
+        this.todoService.updateTodo(todo, {
+            description: $event.target.value.trim()
+        });
+    }
+
+    toggleDetails(todo:Todo) {
+        todo.showDescription = !todo.showDescription;
     }
 
     ngOnInit() {

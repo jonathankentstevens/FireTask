@@ -8,7 +8,11 @@
             <li *ngFor="let todo of todos" [class.completed]="todo.completed">
                 <div class="view">
                     <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.completed">
-                    <label>{{todo.title}}</label>
+                    <input type="text" class="todoEditable" [class.important]="todo.important" (keyup.enter)="updateTitle(todo, $event)" value="{{todo.title}}">
+                    <img src="../../assets/img/ic_arrow_drop_down_black_48dp_1x.png" class="todoDropdown" (click)="todo.showDescription = !todo.showDescription" />
+                    <textarea [hidden]="!todo.showDescription" class="todoDescription" (keyup.enter)="updateDescription(todo, $event)">
+                        {{todo.description}}
+                    </textarea>
                     <button class="destroy" (click)="removeTodo(todo)"></button>
                 </div>
             </li>
