@@ -3,9 +3,9 @@
   <span class="welcomeBanner">
     {{welcomeMsg}}
   </span>
-    <button md-button *ngIf="!loggedIn" (click)="navigate('register')">Register</button>
-    <button md-button *ngIf="!loggedIn" (click)="navigate('login')">Login</button>
-    <button md-button *ngIf="loggedIn" (click)="logout()">Logout</button>
+    <button class="mainBtn" *ngIf="!loggedIn" (click)="navigate('register')">Register</button>
+    <button class="mainBtn" *ngIf="!loggedIn" (click)="navigate('login')">Login</button>
+    <button class="mainBtn" *ngIf="loggedIn" (click)="logout()">Logout</button>
 </md-toolbar>
 
 <router-outlet></router-outlet>

@@ -3,9 +3,11 @@ export class Todo {
     $exists;
     title:string = '';
     description:string = '';
-    showDescription:boolean = false;
     completed:boolean = false;
     important:boolean = false;
+    showDetails:boolean = false;
+    photoUrl:string = '';
+    photoName:string = '';
 
     constructor(values:Object = {}) {
         Object.assign(this, values);

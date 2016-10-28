@@ -1,7 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Router} from "@angular/router";
 import {AuthService} from './shared/auth.service';
-import {FirebaseAuthState} from 'angularfire2';
 
 @Component({
     selector: 'app-root',
@@ -11,10 +10,9 @@ import {FirebaseAuthState} from 'angularfire2';
 })
 
 export class AppComponent implements OnInit {
-    title:string = "Todo App";
+    title:string = "Fire Task";
     loggedIn:boolean = false;
     welcomeMsg:string = "";
-    userAuth:FirebaseAuthState;
 
     constructor(private router:Router, private authService:AuthService) {
     }

@@ -30,12 +30,12 @@ var Loader = {
     }
 };
 
-var Alert = {
-    show: function (title, content) {
-        $("#alertHeaderMsg").html(title);
-        $("#alertBodyMsg").html(content);
+var Modal = {
+    show: function (id, title, content) {
+        $(id + " #header").html(title);
+        $(id + " #body").html(content);
 
-        var modal = document.getElementById('alertBox');
+        var modal = document.getElementById(id);
         modal.style.display = "block";
 
         window.onclick = function (event) {
@@ -44,8 +44,8 @@ var Alert = {
             }
         }
     },
-    close: function () {
-        var modal = document.getElementById('alertBox');
+    close: function (id) {
+        var modal = document.getElementById(id);
         modal.style.display = "none";
     }
 };

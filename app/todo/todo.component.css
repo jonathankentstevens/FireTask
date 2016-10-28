@@ -140,27 +140,10 @@ hr {
     }
 }
 
-
 html,
 body {
     margin: 0;
     padding: 0;
-}
-
-button {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    background: none;
-    font-size: 100%;
-    vertical-align: baseline;
-    font-family: inherit;
-    font-weight: inherit;
-    color: inherit;
-    -webkit-appearance: none;
-    appearance: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
 }
 
 :focus {
@@ -169,6 +152,29 @@ button {
 
 .hidden {
     display: none;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    background-color: #666666;
+    color: #fff;
+    text-align: center;
+    border-radius: 3px;
+    padding: 5px;
+    font-size: 0.5em;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }
 
 .todoContainer {
@@ -203,34 +209,78 @@ button {
     font-weight: 100;
     text-align: center;
     color: #a3e4d7;
-    margin-bottom: 1%;
+    margin: 6% 1% 1%;
     -webkit-text-rendering: optimizeLegibility;
     -moz-text-rendering: optimizeLegibility;
     text-rendering: optimizeLegibility;
 }
 
+.todoView {
+
+}
+
 .todoEditable {
-    width: 70%;
+    width: 40%;
     height: 100%;
-    margin: 10px 5% 10px 10%;
+    margin: 10px 5% 10px 50px;
     font-size: 1em;
     outline: none;
     border: none;
 }
 
-.todoDropdown {
-    vertical-align: bottom;
-    cursor: pointer;
+.todoDetails {
+
 }
 
-.todoDescription {
-    font-size: 0.7em;
-    margin: 3%;
-    width: 93%;
-    min-height: 100px;
-    max-height: 100px;
-    border: ridge;
-    background: #f2f2f2;
+.todoDetailsDescription {
+    width: 80%;
+    height: 85px;
+    margin: 0% auto 2%;
+    text-align: center;
+}
+
+.todoDetailsPhoto {
+    width: 94%;
+    padding: 0% 3%;
+    margin-bottom: 2%;
+}
+
+.todoDetailsPhoto img {
+    width: 100%;
+}
+
+.todoActions {
+    float: right;
+    display: flex;
+    flex-direction: row;
+    width: 175px;
+}
+
+.todoAction {
+    display: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin: 10px;
+    transition: color 0.2s ease-out;
+}
+
+#addDescriptionModal {
+    display: none;
+}
+
+.descriptionTextArea {
+    min-width: 95%;
+    max-width: 95%;
+    min-height: 75%;
+    max-height: 75%;
+    padding: 2%;
+    font-size: 0.5em;
+    outline: none;
+    border: none;
+    font-style: italic;
+    resize: none;
+    /*background: #f2f2f2;*/
 }
 
 .new-todo,
@@ -256,7 +306,7 @@ button {
     padding: 16px 16px 16px 60px;
     border: none;
     background: rgba(0, 0, 0, 0.003);
-    box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+    box-shadow: inset 0 -2px 1px rgba(0, 0, 0, 0.03);
 }
 
 .todoBody {
@@ -334,6 +384,7 @@ label[for='toggle-all'] {
     border: none; /* Mobile Safari */
     -webkit-appearance: none;
     appearance: none;
+    outline: none;
 }
 
 .todo-list li .toggle:after {
@@ -376,15 +427,7 @@ label[for='toggle-all'] {
     transition: color 0.2s ease-out;
 }
 
-.todo-list li .destroy:hover {
-    color: #af5b5e;
-}
-
-.todo-list li .destroy:after {
-    content: '×';
-}
-
-.todo-list li:hover .destroy {
+.todo-list li:hover .todoAction {
     display: block;
 }
 
@@ -399,7 +442,7 @@ label[for='toggle-all'] {
 .footer {
     color: #777;
     padding: 10px 15px;
-    height: 20px;
+    height: 40px;
     text-align: center;
     border-top: 1px solid #e6e6e6;
 }
@@ -497,7 +540,7 @@ html .clear-completed:active {
 	Hack to remove background from Mobile Safari.
 	Can't use it globally since it destroys checkboxes in Firefox
 */
-@media screen and (-webkit-min-device-pixel-ratio:0) {
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
     .toggle-all,
     .todo-list li .toggle {
         background: none;

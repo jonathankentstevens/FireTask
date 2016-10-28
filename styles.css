@@ -40,6 +40,40 @@ html, body {
     font-family: 'Shadows Into Light', cursive;
 }
 
+.navbar {
+    background: #1ABC9C;
+    height: 5%;
+    color: #FFF;
+}
+
+/* Main button */
+.mainBtn {
+    background: #1ABC9C;
+    color: #FFF;
+    font-weight: bold;
+    padding: 10px;
+    width: 80px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 1%;
+    border: 1px solid #1ABC9C;
+}
+
+.mainBtn:hover {
+    color: #1ABC9C;
+    background: #FFF;
+    border: 1px solid #1ABC9C;
+}
+
+.mainBtn:active {
+    outline: none;
+    color: #1ABC9C;
+}
+
+.mainBtn:focus {
+    outline: none;
+}
+
 /* Custom alert box */
 .close {
 
@@ -47,7 +81,7 @@ html, body {
 
 .close:active {
     outline: none;
-    color: #DA3210;
+    color: #1ABC9C;
 }
 
 .close:focus {
@@ -154,4 +188,53 @@ html, body {
 .dialogError {
     color: red;
     font-style: italic;
+}
+
+.modalContainer {
+    display: none;
+    width: 450px;
+    height: 300px;
+    margin: auto;
+    position: absolute;
+    top: 25%;
+    left: 33%;
+    z-index: 1000;
+    background: #f2f2f2;
+    box-shadow: 5px 5px 15px #888888;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px) !important;
+    -o-filter: blur(0px) !important;;
+    -ms-filter: blur(0px) !important;;
+    filter: blur(0px) !important;;
+}
+
+.modalWrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.modalHeader {
+    height: 12%;
+    padding: 6%;
+    font-size: 2em;
+    background: #FFF;
+    border-bottom: 1px solid gray;
+}
+
+.modalContent {
+    height: 34%;
+    padding: 5%;
+}
+
+.modalActions {
+    padding: 2% 5%;
+    height: 15%;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+}
+
+.modalFooter {
+    width: 100%;
+    height: 50px;
 }

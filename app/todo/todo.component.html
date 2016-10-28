@@ -1,19 +1,53 @@
-<h1 class="todoHeader1">Todos</h1>
+<h1 class="todoHeader1 handlee">Todo List</h1>
 <section class="todoContainer">
     <header class="todoHeader">
-        <input class="new-todo" placeholder="What needs to be done?" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()" autofocus="">
+        <input class="new-todo" placeholder="What needs to be done?" [(ngModel)]="newTodo.title"
+               (keyup.enter)="addTodo()" autofocus="">
     </header>
     <section class="todoBody" *ngIf="todos.length > 0">
         <ul class="todo-list">
-            <li *ngFor="let todo of todos" [class.completed]="todo.completed">
-                <div class="view">
+            <li *ngFor="let todo of todos" [class.completed]="todo.completed" (mouseover)="showDetails(todo)"
+                (mouseleave)="hideDetails(todo)">
+                <div class="todoView">
                     <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.completed">
-                    <input type="text" class="todoEditable" [class.important]="todo.important" (keyup.enter)="updateTitle(todo, $event)" value="{{todo.title}}">
-                    <img src="../../assets/img/ic_arrow_drop_down_black_48dp_1x.png" class="todoDropdown" (click)="todo.showDescription = !todo.showDescription" />
-                    <textarea [hidden]="!todo.showDescription" class="todoDescription" (keyup.enter)="updateDescription(todo, $event)">
-                        {{todo.description}}
-                    </textarea>
-                    <button class="destroy" (click)="removeTodo(todo)"></button>
+                    <input type="text" class="todoEditable" [class.important]="todo.important"
+                           (keyup.enter)="updateTitle(todo, $event)" value="{{todo.title}}">
+                    <div class="todoActions">
+                        <div class="tooltip">
+                            <img class="todoAction"
+                                 src="../../assets/img/add_alert.svg"
+                                 (click)="toggleModal(todo, 'addAlertModal')"/>
+                            <span class="tooltiptext">Alert</span>
+                        </div>
+                        <div class="tooltip">
+                            <img class="todoAction tooltip"
+                                 src="../../assets/img/insert_photo.svg"
+                                 (click)="toggleModal(todo, 'addPhotoModal')"/>
+                            <span class="tooltiptext">Photo</span>
+                        </div>
+                        <div class="tooltip">
+                            <img class="todoAction tooltip"
+                                 src="../../assets/img/location.svg"
+                                 (click)="toggleModal(todo, 'addDescriptionModal')"/>
+                            <span class="tooltiptext">Location</span>
+                        </div>
+                        <div class="tooltip">
+                            <img class="todoAction tooltip"
+                                 src="../../assets/img/remove.svg"
+                                 (click)="removeTodo(todo)"/>
+                            <span class="tooltiptext">Remove</span>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="todo.showDetails" class="todoDetails">
+                    <div class="todoDetailsDescription">
+                        <textarea placeholder="Add Description..." class="descriptionTextArea"
+                                  [(ngModel)]="todo.description" (mouseleave)="updateDescription(todo)">
+                        </textarea>
+                    </div>
+                    <div *ngIf="todo.photoUrl" class="todoDetailsPhoto">
+                        <img src="{{todo.photoUrl}}"/>
+                    </div>
                 </div>
             </li>
         </ul>
@@ -22,3 +56,53 @@
         <span class="todo-count"><strong>{{todos.length}}</strong> {{todos.length == 1 ? 'item' : 'items'}} left</span>
     </footer>
 </section>
+
+<!-- Add Alert Modal -->
+<div class="modalContainer" id="addAlertModal">
+    <div class="modalWrapper">
+        <div class="modalHeader">
+            Add/Edit Alert
+        </div>
+        <div class="modalContent">
+            {{selectedTodo.description}}
+        </div>
+        <div class="modalActions">
+            <button class="mainBtn" (click)="toggleModal(selectedTodo, 'addAlertModal')">Cancel</button>
+            <button class="mainBtn" (click)="updateAlert()">Save</button>
+        </div>
+    </div>
+</div>
+
+<!-- Add Photo Modal -->
+<div class="modalContainer" id="addPhotoModal">
+    <div class="modalWrapper">
+        <div class="modalHeader">
+            Add/Edit Photo
+        </div>
+        <div class="modalContent">
+            <input type="file" id="todoPhoto" accept="image/*">
+        </div>
+        <div class="modalActions">
+            <button class="mainBtn" (click)="toggleModal(selectedTodo, 'addPhotoModal')">Cancel</button>
+            <button class="mainBtn" (click)="removePhoto()">Remove</button>
+            <button class="mainBtn" (click)="updatePhoto()">Save</button>
+        </div>
+    </div>
+</div>
+
+<!-- Add Location Modal -->
+<div class="modalContainer" id="addLocationModal">
+    <div class="modalWrapper">
+        <div class="modalHeader">
+            Add/Edit Location
+        </div>
+        <div class="modalContent">
+
+        </div>
+        <div class="modalActions">
+            <button class="mainBtn" (click)="toggleModal(selectedTodo, 'addPhotoModal')">Cancel</button>
+            <button class="mainBtn" (click)="removePhoto()">Remove</button>
+            <button class="mainBtn" (click)="updatePhoto()">Save</button>
+        </div>
+    </div>
+</div>
