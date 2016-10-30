@@ -10,36 +10,46 @@ export class TodoService {
     constructor(private af:AngularFire) {
     }
 
-    getList(auth) {
+    get(auth) {
         this.todos = this.af.database.list(`/users/${auth.uid}/todos`)
         return this.todos;
     }
 
-    addTodo(todo:Todo) {
+    put(todo:Todo) {
+        if (!todo.photoUrl) {
+            todo.photoName = "placeholder.jpg"
+            todo.photoUrl = "https://firebasestorage.googleapis.com/v0/b/todo-app-4a005.appspot.com/o/placeholder.jpg?alt=media&token=4d82c187-41a6-46d1-9786-707a7c4f4e93"
+        }
         this.todos.push(todo);
     }
     
-    updateTodo(todo:Todo, values:Object = {}) {
+    post(todo:Todo, values:Object = {}) {
+        if (!todo.photoUrl) {
+            todo.photoName = "placeholder.jpg"
+            todo.photoUrl = "https://firebasestorage.googleapis.com/v0/b/todo-app-4a005.appspot.com/o/placeholder.jpg?alt=media&token=4d82c187-41a6-46d1-9786-707a7c4f4e93"
+        }
         this.todos.update(todo, values);
     }
 
     toggleTodoComplete(todo:Todo) {
-        let updatedTodo = this.updateTodo(todo, {
+        let updatedTodo = this.post(todo, {
             completed: !todo.completed
         });
         return updatedTodo;
     }
 
-    removeTodo(todo:Todo) {
-        if (todo.photoName || todo.photoUrl) {
+    delete(todo:Todo) {
+        if (todo.photoName != "placeholder.jpg" && (todo.photoName || todo.photoUrl)) {
             this.removePhoto(todo);
+            todo.photoName = "placeholder.jpg"
+            todo.photoUrl = "https://firebasestorage.googleapis.com/v0/b/todo-app-4a005.appspot.com/o/placeholder.jpg?alt=media&token=4d82c187-41a6-46d1-9786-707a7c4f4e93"
         }
         this.todos.remove(todo);
     }
 
     removePhoto(todo:Todo):Promise<any> {
         return new Promise((resolve, reject) => {
-            this.updateTodo(todo, {
+            this.post(todo, {
                 photoUrl: "",
                 photoName: ""
             })

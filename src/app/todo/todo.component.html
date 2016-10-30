@@ -7,7 +7,7 @@
     <section class="todoBody" *ngIf="todos.length > 0">
         <ul class="todo-list">
             <li *ngFor="let todo of todos" [class.completed]="todo.completed" (mouseover)="showDetails(todo)"
-                (mouseleave)="hideDetails(todo)">
+                (mouseleave)="hideDetails(todo); updateDescription(todo);">
                 <div class="todoView">
                     <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.completed">
                     <input type="text" class="todoEditable" [class.important]="todo.important"
@@ -46,7 +46,7 @@
                         </textarea>
                     </div>
                     <div *ngIf="todo.photoUrl" class="todoDetailsPhoto">
-                        <img src="{{todo.photoUrl}}"/>
+                        <img src="{{todo.photoUrl}}" (click)="toggleModal(todo, 'addPhotoModal')" />
                     </div>
                 </div>
             </li>
@@ -64,7 +64,7 @@
             Add/Edit Alert
         </div>
         <div class="modalContent">
-            {{selectedTodo.description}}
+            < Datetime picker here >
         </div>
         <div class="modalActions">
             <button class="mainBtn" (click)="toggleModal(selectedTodo, 'addAlertModal')">Cancel</button>

@@ -161,7 +161,7 @@ body {
 
 .tooltip .tooltiptext {
     visibility: hidden;
-    background-color: #666666;
+    background-color: #000;
     color: #fff;
     text-align: center;
     border-radius: 3px;
@@ -222,21 +222,23 @@ body {
 .todoEditable {
     width: 40%;
     height: 100%;
-    margin: 10px 5% 10px 50px;
+    margin: 8px 5% 5px 50px;
     font-size: 1em;
     outline: none;
     border: none;
 }
 
 .todoDetails {
-
+    min-height: 190px;
+    max-height: 190px;
 }
 
 .todoDetailsDescription {
-    width: 80%;
-    height: 85px;
-    margin: 0% auto 2%;
+    width: 55%;
+    height: 166px;
+    margin: 0% 2% 2%;
     text-align: center;
+    float: left;
 }
 
 .todoDetailsPhoto {
@@ -246,7 +248,15 @@ body {
 }
 
 .todoDetailsPhoto img {
-    width: 100%;
+    max-width: 40%;
+    max-height: 175px;
+    float: right;
+}
+
+.todoDetailsPhoto img:hover {
+    background: #000;
+    opacity: 0.8;
+    cursor: pointer;
 }
 
 .todoActions {
@@ -270,17 +280,18 @@ body {
 }
 
 .descriptionTextArea {
-    min-width: 95%;
-    max-width: 95%;
-    min-height: 75%;
-    max-height: 75%;
-    padding: 2%;
+    min-width: 92%;
+    max-width: 92%;
+    min-height: 93%;
+    max-height: 93%;
+    padding: 2% 4%;
     font-size: 0.5em;
+    text-align: center;
+    background: #f2f2f2;
     outline: none;
     border: none;
     font-style: italic;
     resize: none;
-    /*background: #f2f2f2;*/
 }
 
 .new-todo,
@@ -380,7 +391,6 @@ label[for='toggle-all'] {
     top: 0;
     bottom: 0;
     margin: auto 0;
-    margin-top: 0.5%;
     border: none; /* Mobile Safari */
     -webkit-appearance: none;
     appearance: none;
@@ -541,14 +551,14 @@ html .clear-completed:active {
 	Can't use it globally since it destroys checkboxes in Firefox
 */
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-    .toggle-all,
-    .todo-list li .toggle {
-        background: none;
-    }
+    /*.toggle-all,*/
+    /*.todo-list li .toggle {*/
+        /*background: none;*/
+    /*}*/
 
-    .todo-list li .toggle {
-        height: 40px;
-    }
+    /*.todo-list li .toggle {*/
+        /*height: 245px;*/
+    /*}*/
 
     .toggle-all {
         -webkit-transform: rotate(90deg);

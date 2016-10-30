@@ -20,7 +20,7 @@ export class TodoComponent implements OnInit {
     }
 
     addTodo() {
-        this.todoService.addTodo(this.newTodo);
+        this.todoService.put(this.newTodo);
         this.newTodo = new Todo();
     }
 
@@ -29,7 +29,7 @@ export class TodoComponent implements OnInit {
     }
 
     removeTodo(todo:Todo) {
-        this.todoService.removeTodo(todo);
+        this.todoService.delete(todo);
     }
 
     toggleModal(todo:Todo, id:string) {
@@ -44,13 +44,13 @@ export class TodoComponent implements OnInit {
     }
 
     updateTitle(todo:Todo, $event) {
-        this.todoService.updateTodo(todo, {
+        this.todoService.post(todo, {
             title: $event.target.value
         });
     }
 
     updateDescription(todo:Todo) {
-        this.todoService.updateTodo(todo, {
+        this.todoService.post(todo, {
             description: todo.description
         });
     }
@@ -63,7 +63,7 @@ export class TodoComponent implements OnInit {
     updatePhoto() {
         let element:HTMLInputElement = <HTMLInputElement>document.getElementById("todoPhoto");
         this.todoService.uploadPhoto(this.selectedTodo, element.files[0]).then((data) => {
-            this.todoService.updateTodo(this.selectedTodo, {
+            this.todoService.post(this.selectedTodo, {
                 photoUrl: data,
                 photoName: element.files[0].name
             });
@@ -83,14 +83,14 @@ export class TodoComponent implements OnInit {
     }
 
     hideDetails(todo:Todo) {
-        this.updateDescription(todo);
+        // this.updateDescription(todo);
         todo.showDetails = false;
     }
 
     ngOnInit() {
         this.authService.getCurrent().subscribe(auth => {
             if (auth) {
-                this.todoService.getList(auth).subscribe(todos => {
+                this.todoService.get(auth).subscribe(todos => {
                     this.todos = todos;
                 });
             } else {
